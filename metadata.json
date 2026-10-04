@@ -1,0 +1,6 @@
+{
+  "name": "ClearShot - AI Product Photo Studio",
+  "description": "Remove backgrounds, isolate products, and clean up commercial photos with natural language instructions powered by Gemini.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
