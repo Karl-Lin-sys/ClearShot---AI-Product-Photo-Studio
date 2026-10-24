@@ -1,3 +1,4 @@
+import { localApiOnly } from './local-api-guard.mjs';
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
@@ -7,6 +8,7 @@ import { GoogleGenAI } from "@google/genai";
 dotenv.config();
 
 const app = express();
+app.use('/api', localApiOnly(() => PORT));
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 app.use(express.json({ limit: "50mb" }));
@@ -254,7 +256,7 @@ async function startServer() {
       server: {
         middlewareMode: true,
         port: PORT,
-        host: "0.0.0.0",
+        host: "127.0.0.1",
       },
       appType: "spa",
     });
@@ -266,7 +268,7 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
+  app.listen(PORT, "127.0.0.1", () => {
     console.log(`Server listening on port ${PORT}`);
   });
 }
